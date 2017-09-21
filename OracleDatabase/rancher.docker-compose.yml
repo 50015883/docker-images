@@ -1,0 +1,21 @@
+version: '2'
+services:
+  OracleDB:
+    image: 219.232.47.3:18082/oracle/database:12.1.0.2-ee
+    hostname: db
+    environment:
+      ORACLE_SID: CDB
+      ORACLE_PDB: PDB
+      ORACLE_PWD: oracle
+    stdin_open: true
+    volumes:
+    - /d02/apps/oracle/oradata:/opt/oracle/oradata
+    tty: true
+    ports:
+    - 11521:1521/tcp
+    - 10022:22/tcp
+    - 15500:5500/tcp
+    user: oracle
+    labels:
+      io.rancher.container.pull_image: always
+      io.rancher.container.requested_ip: 10.42.1.11
